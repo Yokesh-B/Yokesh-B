@@ -1,18 +1,18 @@
 # mongodb server connection , database and collection creation
 from pymongo import MongoClient
 client = MongoClient("mongodb://localhost:27017") 
-db = client["youtube_data_lake_db"]  
-collection = db["channels_data_collection"] 
+db = client["youtube_data"]  
+ 
 
 # mysql server connection , tables creation
 import pymysql
 host = 'localhost'
 port = 3306
 user = 'root'
-password = 'password'
+password = 'Yokesh@1'
 conn = pymysql.connect(host=host, port=port, user=user, password=password)
 cursor = conn.cursor()
-cursor.execute("USE youtube_datawarehouse")
+cursor.execute("USE youtube")
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS channels (
