@@ -20,10 +20,10 @@ with st.sidebar:
                            default_index=0,
                            orientation="vertical",
                            styles={"nav-link": {"font-size": "30px", "text-align": "centre", "margin": "0px", 
-                                                "--hover-color": "#C80101"},
+                                                "--hover-color": "#011cc8"},
                                    "icon": {"font-size": "30px"},
                                    "container" : {"max-width": "6000px"},
-                                   "nav-link-selected": {"background-color": "#C80101"}})
+                                   "nav-link-selected": {"background-color": "#011cc8"}})
 # Bridging a connection with MongoDB Atlas and Creating a new database(youtube_data)
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["youtube_data"]
@@ -141,7 +141,7 @@ if selected == "Home":
     # Title Image
     col1,col2 = st.columns(2,gap= 'medium')
     col1.markdown("## :red[Domain] : Youtube")
-    col1.markdown("## :red[Technologies] : Python,MongoDB, Youtube Data API, MySql, Streamlit")
+    col1.markdown("## :red[Technologies] : Python,MongoDB compass, Youtube Data API, MySql Workbench, Streamlit")
     col1.markdown("## :red[About the App] : Retrieving the Youtube channels data from the Google API, storing it in a MongoDB as data lake, migrating and transforming data into a SQL database,then querying the data and displaying it in the Streamlit app.")
     col2.markdown("#   ")
     col2.markdown("#   ")
@@ -157,13 +157,13 @@ if selected == "Extract":
     with tab1:
         st.markdown("#    ")
         st.write("### Enter YouTube Channel_ID below :")
-        ch_id = st.text_input("Hint : Goto channel's home page > Right click > View page source > Find channel_id").split(',')
+        ch_id = st.text_input("Hint : channel's home page > Right click > View page source > Find channel_id").split(',')
         if ch_id and st.button("Extract Data"):
             ch_details = get_channel_details(ch_id)
             st.write(f'#### Extracted data from :green["{ch_details[0]["Channel_name"]}"] channel')
             st.table(ch_details)
-        if st.button("Upload to MongoDB"):
-            with st.spinner('Please Wait for it...'):
+        if st.button("UpData to MongoDB"):
+            with st.spinner('Please Wait...'):
                 ch_details = get_channel_details(ch_id)
                 v_ids = get_channel_videos(ch_id)
                 vid_details = get_video_details(v_ids)
