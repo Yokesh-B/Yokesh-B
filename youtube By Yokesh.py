@@ -115,14 +115,14 @@ def get_comments_details(v_id):
                                                     videoId=v_id,
                                                     maxResults=10,
                                                     pageToken=next_page_token).execute()
-            for cmt in response['items']:
-                data = dict(Comment_id = cmt['id'],
-                            Video_id = cmt['snippet']['videoId'],
-                            Comment_text = cmt['snippet']['topLevelComment']['snippet']['textDisplay'],
-                            Comment_author = cmt['snippet']['topLevelComment']['snippet']['authorDisplayName'],
-                            Comment_posted_date = cmt['snippet']['topLevelComment']['snippet']['publishedAt'],
-                            Like_count = cmt['snippet']['topLevelComment']['snippet']['likeCount'],
-                            Reply_count = cmt['snippet']['totalReplyCount']
+            for ct in response['items']:
+                data = dict(Comment_id = ct['id'],
+                            Video_id = ct['snippet']['videoId'],
+                            Comment_text = ct['snippet']['topLevelComment']['snippet']['textDisplay'],
+                            Comment_author = ct['snippet']['topLevelComment']['snippet']['authorDisplayName'],
+                            Comment_posted_date = ct['snippet']['topLevelComment']['snippet']['publishedAt'],
+                            Like_count = ct['snippet']['topLevelComment']['snippet']['likeCount'],
+                            Reply_count = ct['snippet']['totalReplyCount']
                            )
                 comment_data.append(data)
             next_page_token = response.get('nextPageToken')
@@ -137,11 +137,11 @@ def channel_names():
     for i in db.channel_details.find():
         ch_name.append(i['Channel_name'])
     return ch_name
-# HOME PAGE of streamlit 
+# HOME PAGE of Streamlit 
 if selected == "Home":
     col1,col2 = st.columns(2,gap= 'medium')
     col1.markdown("## :red[Domain] : Youtube")
-    col1.markdown("## :red[About the App] : Retrieving the Youtube channels data from the Google API, storing it in a MongoDB as data lake, migrating and transforming data into a SQL database,then querying the data and displaying it in the Streamlit app.")
+    col1.markdown("## :red[About the App]: Retrieving the Youtube channels data from the Google API, storing it in a MongoDB as data lake, migrating and transforming data into a SQL database, then querying the data and displaying it in the Streamlit app.")
     col2.markdown("#   ")
     col2.markdown("#   ")
     col2.markdown("#   ")
